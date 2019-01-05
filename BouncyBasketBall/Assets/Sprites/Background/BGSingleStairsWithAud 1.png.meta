@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 050c64bc28293d549bdecac954c42c69
+guid: 0c2254062bc4e2044bb2ef785c693718
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: BGSingleStairsWithAud 1_0
+    21300002: BGSingleStairsWithAud 1_1
+    21300004: BGSingleStairsWithAud 1_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 335
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,11 +96,71 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BGSingleStairsWithAud 1_0
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 315
+        width: 124
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 4, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea0ba596aeaec6b418a84442313fd216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BGSingleStairsWithAud 1_1
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 315
+        width: 121
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274e13a9362d0894cb2b6f3d81f0df79
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BGSingleStairsWithAud 1_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 2
+        width: 535
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198989db448bd2d4caa9feb223c97b6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0eaf2fd3126f71c4b8575cb029dcb29e
+    spriteID: 95556d4f1c3c00f4facaa6afc17c2727
     vertices: []
     indices: 
     edges: []
