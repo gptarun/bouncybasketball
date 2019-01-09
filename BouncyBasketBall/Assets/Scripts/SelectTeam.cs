@@ -6,17 +6,23 @@ using TMPro;
 
 public class SelectTeam : MonoBehaviour {
 
-    private List<string> teamList = new List<string>(new string[] { "HOV","LAC","LAL", "MIL", "MIN", "NOP", "NYK", "ORL", "PHI", "PHO", "POR", "SAC", "UTA", "WAS", "BRO", "CHA", "CHI", "DAL", "DET", "DEN" });
-    //private List<int> teamRating = new List<int>(new int[] { 2, 3, 1, 1, 1, 2, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2 });
+    private List<string> teamList = new List<string>(new string[] { "Africa", "Argentina", "Australia", "Brazil", "China", "France", "India", "Mexico", "Philippines", "Russia", "Serbia", "Singapore", "Spain", "Thailand", "United States", "Yugoslavia"});
+    private readonly List<int> teamRating = new List<int>(new int[] { 2,3,2,3,2,3,2,1,2,3,2,2,3,2,3,3 });
+    //Choosing Teams
     [SerializeField] TextMeshProUGUI teamAChoice;
     [SerializeField] TextMeshProUGUI teamBChoice;
+    //Choosing Human or AI mode
     [SerializeField] Button changeModeA;
     [SerializeField] Button changeModeB;
     private int modeCounterA = 0;
     private int modeCounterB = 1;
+    //Chaning sprite AI to Human and vice-versa
     public Sprite[] mode;
     private int indexA = 9;
     private int indexB = 9;
+    //Calculating stars
+    public GameObject[] teamAStar;
+    public GameObject[] teamBStar;
 
     void Start () {
         teamAChoice.text = teamList[indexA].ToString();
@@ -38,6 +44,7 @@ public class SelectTeam : MonoBehaviour {
             indexA = 0;
         }
         teamAChoice.text = teamList[indexA].ToString();
+        RankCalculation(indexA, teamAStar);
     }
     public void LeftButtonA()
     {
@@ -47,6 +54,7 @@ public class SelectTeam : MonoBehaviour {
             indexA = teamList.Count - 1;
         }
         teamAChoice.text = teamList[indexA].ToString();
+        RankCalculation(indexA, teamAStar);
     }
     public void RighButtonB()
     {
@@ -56,6 +64,7 @@ public class SelectTeam : MonoBehaviour {
             indexB = 0;
         }
         teamBChoice.text = teamList[indexB].ToString();
+        RankCalculation(indexB, teamBStar);
     }
     public void LeftButtonB()
     {
@@ -65,6 +74,7 @@ public class SelectTeam : MonoBehaviour {
             indexB = teamList.Count - 1;
         }
         teamBChoice.text = teamList[indexB].ToString();
+        RankCalculation(indexB, teamBStar);
     }
     public void SelectModeOnA()
     {
@@ -88,6 +98,22 @@ public class SelectTeam : MonoBehaviour {
         else
         {
             changeModeB.image.sprite = mode[1];
+        }
+    }
+
+    public void RankCalculation(int value, GameObject[] gameObj)
+    {
+        ResetRank(gameObj);
+        for (int i = 0; i < teamRating[value]; i++)
+        {
+            gameObj[i].SetActive(true);
+        }        
+    }
+    public void ResetRank(GameObject[] gameObj)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            gameObj[i].SetActive(false);
         }
     }
 }
