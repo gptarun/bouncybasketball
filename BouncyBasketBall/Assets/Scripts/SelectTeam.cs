@@ -23,12 +23,16 @@ public class SelectTeam : MonoBehaviour {
     //Calculating stars
     public GameObject[] teamAStar;
     public GameObject[] teamBStar;
-
+    //Loading flags
+    public Sprite[] flags;
+    [SerializeField] Button teamAFlag;
+    [SerializeField] Button teamBFlag;
     void Start () {
         teamAChoice.text = teamList[indexA].ToString();
         teamBChoice.text = teamList[indexA].ToString();
         changeModeA.image.sprite = mode[modeCounterA];
         changeModeB.image.sprite = mode[modeCounterB];
+        flags = Resources.LoadAll<Sprite>("Flags");
     }
 	
 	// Update is called once per frame
@@ -45,6 +49,7 @@ public class SelectTeam : MonoBehaviour {
         }
         teamAChoice.text = teamList[indexA].ToString();
         RankCalculation(indexA, teamAStar);
+        SetFlagoFTeam(indexA, teamAFlag);
     }
     public void LeftButtonA()
     {
@@ -55,6 +60,8 @@ public class SelectTeam : MonoBehaviour {
         }
         teamAChoice.text = teamList[indexA].ToString();
         RankCalculation(indexA, teamAStar);
+        SetFlagoFTeam(indexA, teamAFlag);
+
     }
     public void RighButtonB()
     {
@@ -65,6 +72,7 @@ public class SelectTeam : MonoBehaviour {
         }
         teamBChoice.text = teamList[indexB].ToString();
         RankCalculation(indexB, teamBStar);
+        SetFlagoFTeam(indexB, teamBFlag);
     }
     public void LeftButtonB()
     {
@@ -75,6 +83,7 @@ public class SelectTeam : MonoBehaviour {
         }
         teamBChoice.text = teamList[indexB].ToString();
         RankCalculation(indexB, teamBStar);
+        SetFlagoFTeam(indexB, teamBFlag);
     }
     public void SelectModeOnA()
     {
@@ -115,5 +124,9 @@ public class SelectTeam : MonoBehaviour {
         {
             gameObj[i].SetActive(false);
         }
+    }
+    public void SetFlagoFTeam(int flagCount,Button flagButton)
+    {
+        flagButton.image.sprite = flags[flagCount];
     }
 }
