@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class SelectTeam : MonoBehaviour {
 
     private List<string> teamList = new List<string>(new string[] { "Africa", "Argentina", "Australia", "Brazil", "China", "France", "India", "Mexico", "Philippines", "Russia", "Serbia", "Singapore", "Spain", "Thailand", "United States", "Yugoslavia"});
     private readonly List<int> teamRating = new List<int>(new int[] { 2,3,2,3,2,3,2,1,2,3,2,2,3,2,3,3 });
     //Choosing Teams
-    [SerializeField] TextMeshProUGUI teamAChoice;
-    [SerializeField] TextMeshProUGUI teamBChoice;
+    [SerializeField] public TextMeshProUGUI teamAChoice;
+    [SerializeField] public TextMeshProUGUI teamBChoice;
     //Choosing Human or AI mode
     [SerializeField] Button changeModeA;
+    private string modeA;
     [SerializeField] Button changeModeB;
+    private string modeB;
     private int modeCounterA = 0;
     private int modeCounterB = 1;
     //Chaning sprite AI to Human and vice-versa
@@ -25,14 +28,22 @@ public class SelectTeam : MonoBehaviour {
     public GameObject[] teamBStar;
     //Loading flags
     public Sprite[] flags;
-    [SerializeField] Button teamAFlag;
-    [SerializeField] Button teamBFlag;
+    [SerializeField] public Button teamAFlag;
+    [SerializeField] public Button teamBFlag;
+    [SerializeField] TournamentScript tournament;
+    //Storing Team Data into Dictionary
+    //Dictionary<int, TeamScript> teamData = new Dictionary<int, TeamScript>();
+    string currButtonName;
+
+
     void Start () {
         teamAChoice.text = teamList[indexA].ToString();
         teamBChoice.text = teamList[indexA].ToString();
         changeModeA.image.sprite = mode[modeCounterA];
         changeModeB.image.sprite = mode[modeCounterB];
         flags = Resources.LoadAll<Sprite>("Flags");
+        modeA = "human";
+        modeB = "bot";
     }
 	
 	// Update is called once per frame
@@ -91,10 +102,12 @@ public class SelectTeam : MonoBehaviour {
         if (modeCounterA % 2 == 0)
         {
             changeModeA.image.sprite = mode[0];
-        }
+            modeA = "human";
+}
         else
         {
             changeModeA.image.sprite = mode[1];
+            modeA = "bot";
         }
     }
     public void SelectModeOnB()
@@ -103,10 +116,12 @@ public class SelectTeam : MonoBehaviour {
         if (modeCounterB % 2 == 0)
         {
             changeModeB.image.sprite = mode[0];
+            modeB = "human";
         }
         else
         {
             changeModeB.image.sprite = mode[1];
+            modeB = "bot";
         }
     }
 
@@ -128,5 +143,15 @@ public class SelectTeam : MonoBehaviour {
     public void SetFlagoFTeam(int flagCount,Button flagButton)
     {
         flagButton.image.sprite = flags[flagCount];
+    }
+
+    public void SetTeamForTournament()
+    {
+        tournament.SetTeam(teamList[indexA].ToString(), teamList[indexB].ToString(),modeA,modeB,teamAFlag.image.sprite,teamBFlag.image.sprite, currButtonName);
+    }
+
+    public void buttonClickedName(string buttonName)
+    {
+        currButtonName = buttonName;
     }
 }
