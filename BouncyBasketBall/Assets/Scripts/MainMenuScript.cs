@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour {
 
-	public void playGame()
+	public void PlaySingleGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("GameScene");
+    }
+    public void PlayTournamentGame()
+    {
+        SceneManager.LoadScene("TournamentScene");
     }
     public void quit()
     {

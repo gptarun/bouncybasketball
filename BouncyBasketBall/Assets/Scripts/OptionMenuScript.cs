@@ -7,24 +7,29 @@ public class OptionMenuScript : MonoBehaviour {
     //All option menu UI
     //number of quaters in game
     [SerializeField] TextMeshProUGUI noQuater;
-    private int quaterCounter = 4;
     //Difficulty level of Game Easy or Hard
     [SerializeField] TextMeshProUGUI difficulty;
     List<string> diffLevel = new List<string>(new string[] {"EASY","HARD" });
     //Make sound effects ON/OFF
     [SerializeField] Toggle sound;
     //Set team size - 1, 2 or 3
-    [SerializeField] TextMeshProUGUI teamSize;
-    private int teamSizeCounter = 3;
+    [SerializeField] TextMeshProUGUI teamSize;    
     //Set quater time 30, 60, 90
     [SerializeField] TextMeshProUGUI quaterTime;
-    private int quaterDuration = 30;
     //Switch side after Number of quaters/2
     [SerializeField] Toggle switchSide;
     //Make game music ON/OFF
     [SerializeField] Toggle music;
-	// Use this for initialization
-	void Start () {
+
+    //All static variables
+    public static int quaterCounter = 4;
+    public static int teamSizeCounter = 3;
+    public static string difficultyLevel = "EASY";
+    public static bool isSound = true;
+    public static bool isMusic = true;
+    public static int quaterDuration = 90;
+    // Use this for initialization
+    void Start () {
         noQuater.text = quaterCounter.ToString();
         difficulty.text = diffLevel[0];
         teamSize.text = teamSizeCounter.ToString();
@@ -53,11 +58,13 @@ public class OptionMenuScript : MonoBehaviour {
     public void ChangeDifficulty()
     {
         if (difficulty.text.Equals("EASY")){
-            difficulty.text = diffLevel[1];
+            difficulty.text = diffLevel[0];
+            difficultyLevel = diffLevel[0];
         }
         else
         {
-            difficulty.text = diffLevel[0];
+            difficulty.text = diffLevel[1];
+            difficultyLevel = diffLevel[1];
         }
     }
 

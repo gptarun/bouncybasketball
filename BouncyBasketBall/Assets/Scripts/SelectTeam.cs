@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class SelectTeam : MonoBehaviour {
 
@@ -34,7 +35,7 @@ public class SelectTeam : MonoBehaviour {
     //Storing Team Data into Dictionary
     //Dictionary<int, TeamScript> teamData = new Dictionary<int, TeamScript>();
     string currButtonName;
-
+    [SerializeField] SinglePlayerController singlePlayer;
 
     void Start () {
         teamAChoice.text = teamList[indexA].ToString();
@@ -150,8 +151,18 @@ public class SelectTeam : MonoBehaviour {
         tournament.SetTeam(teamList[indexA].ToString(), teamList[indexB].ToString(),modeA,modeB,teamAFlag.image.sprite,teamBFlag.image.sprite, currButtonName);
     }
 
+    public void SetTeamForSingleMatch()
+    {
+        singlePlayer.SetTeams(teamList[indexA].ToString(), teamList[indexB].ToString(), modeA, modeB);
+    }
+
     public void buttonClickedName(string buttonName)
     {
         currButtonName = buttonName;
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
