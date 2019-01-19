@@ -7,8 +7,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SinglePlayerController : MonoBehaviour {
-    public string teamAMode;
-    public string teamBMode;
+    [HideInInspector] public string teamAMode;
+    [HideInInspector] public string teamBMode;
     private string teamAFullName;
     private string teamBFullName;
     [SerializeField] Text quater;
@@ -30,7 +30,6 @@ public class SinglePlayerController : MonoBehaviour {
     bool isQuater = true;
     public GameObject jumpAnim;
     float delatTime;
-    public PlayerJump player;
     // Use this for initialization
     void Start () {
         pauseButtonPressed = false;

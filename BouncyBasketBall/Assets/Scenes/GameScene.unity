@@ -1102,6 +1102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911b9f051d4b7604aa6b6c8551b63c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamAMode: 
+  teamBMode: 
   quater: {fileID: 1611403389}
   quaterTimer: {fileID: 1018912835}
   teamAScore: {fileID: 1998427471}
@@ -3011,6 +3013,14 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1358401813796498, guid: 67898889b1c70d64caf1cde79676116f, type: 2}
+      propertyPath: m_Name
+      value: HoopA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217602298913298, guid: 67898889b1c70d64caf1cde79676116f, type: 2}
+      propertyPath: m_Name
+      value: HoopB
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67898889b1c70d64caf1cde79676116f, type: 2}
   m_IsPrefabAsset: 0
@@ -3430,6 +3440,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224454641736677346, guid: 2b7e8fa1da14d3e4bb5d59cfc6eb0f83,
     type: 2}
   m_PrefabInternal: {fileID: 1230038638}
+--- !u!1 &1289147967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1096923707115864, guid: 67898889b1c70d64caf1cde79676116f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1120056793}
+--- !u!114 &1289147968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1289147967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595809086bfd4114482518ce5d62e5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1301957350
 GameObject:
   m_ObjectHideFlags: 0
