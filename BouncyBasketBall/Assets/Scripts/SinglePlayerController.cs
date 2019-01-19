@@ -51,13 +51,17 @@ public class SinglePlayerController : MonoBehaviour {
             {
                 quaterTimer.text = qTimer.ToString();
             }
-            if ((quaterCounter == totalCounter) && (qTimer < 0))
+            if (qTimer < 0)
             {
-                if (!gameOver)
+                quaterCounter++;
+                if ((quaterCounter == totalCounter))
                 {
-                    gameOver = true;
-                    GameWinner();
+                    if (!gameOver)
+                    {
+                        gameOver = true;
+                        GameWinner();
 
+                    }
                 }
             }
         }
