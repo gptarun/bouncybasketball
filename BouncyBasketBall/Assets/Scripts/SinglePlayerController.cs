@@ -7,12 +7,12 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SinglePlayerController : MonoBehaviour {
-    private string teamAMode;
-    private string teamBMode;
+    public string teamAMode;
+    public string teamBMode;
     private string teamAFullName;
     private string teamBFullName;
     [SerializeField] Text quater;
-    private int totalCounter;
+    private int totalQuaterCounter;
     private int quaterCounter = 1;
     [SerializeField] Text quaterTimer;
     private int qTimer;
@@ -27,10 +27,14 @@ public class SinglePlayerController : MonoBehaviour {
     [SerializeField] Button pauseButton;
     private static bool pauseButtonPressed = false;
     bool gameOver = false;
+    bool isQuater = true;
+    public GameObject jumpAnim;
+    float delatTime;
+    public PlayerJump player;
     // Use this for initialization
     void Start () {
         pauseButtonPressed = false;
-        totalCounter = OptionMenuScript.quaterCounter;
+        totalQuaterCounter = OptionMenuScript.quaterCounter;
         quater.text = "Q" + quaterCounter;
         qTimer = OptionMenuScript.quaterDuration;
         quaterTimer.text = "" + qTimer;
@@ -39,32 +43,49 @@ public class SinglePlayerController : MonoBehaviour {
         teamAScore.text = scoreA.ToString();
         teamBScore.text = scoreB.ToString();
         StartCoroutine("LoseTime");
+        delatTime = qTimer;
         Time.timeScale = 1;
+        StartCoroutine(MakeUserReady());
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(pauseButtonPressed);
         if (!pauseButtonPressed)
         {
+            delatTime -= Time.deltaTime;
             if (qTimer > -1)
             {
-                quaterTimer.text = qTimer.ToString();
-            }
-            if (qTimer < 0)
-            {
-                quaterCounter++;
-                if ((quaterCounter == totalCounter))
-                {
-                    if (!gameOver)
-                    {
-                        gameOver = true;
-                        GameWinner();
+                GameQuaterCounter(qTimer);
 
-                    }
+            }
+            else if(qTimer < 1 && quaterCounter != totalQuaterCounter)
+            {
+                qTimer = OptionMenuScript.quaterDuration;
+                quaterCounter++;
+                quater.text = "Q" + quaterCounter;
+                StartCoroutine(MakeUserReady());
+            }
+            else
+            {
+                if (!gameOver)
+                {
+                    gameOver = true;
+                    GameWinner();
                 }
             }
         }
+    }
+    
+    IEnumerator MakeUserReady()
+    {
+        jumpAnim.SetActive(true);
+        yield return new WaitForSeconds(1);
+        jumpAnim.SetActive(false);
+    }
+    
+    public void GameQuaterCounter(int qTimer)
+    {
+        quaterTimer.text = qTimer.ToString();                        
     }
 
     public void SinglePlayerTeams()
