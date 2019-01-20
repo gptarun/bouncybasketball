@@ -406,7 +406,6 @@ GameObject:
   - component: {fileID: 46773601}
   - component: {fileID: 46773604}
   - component: {fileID: 46773603}
-  - component: {fileID: 46773602}
   m_Layer: 0
   m_Name: chi_p3_hand
   m_TagString: Hand
@@ -428,18 +427,6 @@ Transform:
   m_Father: {fileID: 210798199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &46773602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 46773600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86f68de0a2e66141a3863eb53c6f6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!61 &46773603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -658,15 +645,15 @@ GameObject:
   - component: {fileID: 210798199}
   - component: {fileID: 210798203}
   - component: {fileID: 210798202}
-  - component: {fileID: 210798200}
   - component: {fileID: 210798204}
+  - component: {fileID: 210798200}
   m_Layer: 0
   m_Name: PBody3
-  m_TagString: Untagged
+  m_TagString: TeamA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &210798199
 Transform:
   m_ObjectHideFlags: 0
@@ -674,7 +661,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210798198}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -3.89, y: -2.005, z: 0.0625}
+  m_LocalPosition: {x: -3.89, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 46773601}
@@ -693,6 +680,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!50 &210798202
 Rigidbody2D:
   serializedVersion: 4
@@ -704,10 +694,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1035,7 +1025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 329420648}
   m_Layer: 0
-  m_Name: Team_Blue
+  m_Name: TeamB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1122,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fee6b1409fc97d44fac931a965a90aa1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1624,15 +1614,15 @@ GameObject:
   - component: {fileID: 687963690}
   - component: {fileID: 687963694}
   - component: {fileID: 687963693}
-  - component: {fileID: 687963691}
   - component: {fileID: 687963695}
+  - component: {fileID: 687963691}
   m_Layer: 0
   m_Name: PBody2
-  m_TagString: Untagged
+  m_TagString: TeamA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &687963690
 Transform:
   m_ObjectHideFlags: 0
@@ -1659,6 +1649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!50 &687963693
 Rigidbody2D:
   serializedVersion: 4
@@ -1670,10 +1663,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1854,7 +1847,6 @@ GameObject:
   - component: {fileID: 715161162}
   - component: {fileID: 715161165}
   - component: {fileID: 715161164}
-  - component: {fileID: 715161163}
   m_Layer: 0
   m_Name: chi_p1_hand
   m_TagString: Hand
@@ -1876,18 +1868,6 @@ Transform:
   m_Father: {fileID: 1695395017}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &715161163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 715161161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86f68de0a2e66141a3863eb53c6f6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!61 &715161164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2026,7 +2006,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 766937605}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 768c84045007d91469fcde6ee839dbc6, type: 3}
   m_Name: 
@@ -2412,7 +2392,6 @@ GameObject:
   - component: {fileID: 919854960}
   - component: {fileID: 919854963}
   - component: {fileID: 919854962}
-  - component: {fileID: 919854961}
   m_Layer: 0
   m_Name: chi_p2_hand
   m_TagString: Hand
@@ -2434,18 +2413,6 @@ Transform:
   m_Father: {fileID: 687963690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919854961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 919854959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86f68de0a2e66141a3863eb53c6f6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!61 &919854962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2526,13 +2493,16 @@ GameObject:
   m_Component:
   - component: {fileID: 993438780}
   - component: {fileID: 993438781}
+  - component: {fileID: 993438782}
+  - component: {fileID: 993438783}
+  - component: {fileID: 993438784}
   m_Layer: 0
   m_Name: PBody1
-  m_TagString: Untagged
+  m_TagString: TeamB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &993438780
 Transform:
   m_ObjectHideFlags: 0
@@ -2540,7 +2510,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 993438779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9, y: -1.9749998, z: 0.0625}
+  m_LocalPosition: {x: 1.9, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1595811587}
@@ -2593,6 +2563,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &993438782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993438779}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01175648, y: 1.26}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.77, y: 2.52}
+    newSize: {x: 0.77, y: 2.52}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.41730416, y: 2.52}
+  m_EdgeRadius: 0
+--- !u!50 &993438783
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993438779}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &993438784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993438779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92ed690a3c0f8f478a321c762f0cccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!1001 &996149396
 Prefab:
   m_ObjectHideFlags: 0
@@ -3547,9 +3577,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289147967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 595809086bfd4114482518ce5d62e5ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 768c84045007d91469fcde6ee839dbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  attached: 0
+  throwBall: 0
+  attachName: 
 --- !u!1 &1301957350
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,13 +3794,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1465716799}
   - component: {fileID: 1465716800}
+  - component: {fileID: 1465716801}
+  - component: {fileID: 1465716802}
+  - component: {fileID: 1465716803}
   m_Layer: 0
   m_Name: PBody2
-  m_TagString: Untagged
+  m_TagString: TeamB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1465716799
 Transform:
   m_ObjectHideFlags: 0
@@ -3774,7 +3811,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465716798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.09, y: -1.9849999, z: 0.0625}
+  m_LocalPosition: {x: 3.09, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1157470259}
@@ -3827,6 +3864,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1465716801
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1465716798}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02351284, y: 1.215}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.77, y: 2.43}
+    newSize: {x: 0.77, y: 2.43}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.41730452, y: 2.43}
+  m_EdgeRadius: 0
+--- !u!50 &1465716802
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1465716798}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &1465716803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1465716798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92ed690a3c0f8f478a321c762f0cccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!1 &1522161778
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,15 +4411,15 @@ GameObject:
   - component: {fileID: 1695395017}
   - component: {fileID: 1695395021}
   - component: {fileID: 1695395020}
-  - component: {fileID: 1695395018}
   - component: {fileID: 1695395022}
+  - component: {fileID: 1695395018}
   m_Layer: 0
   m_Name: PBody1
-  m_TagString: Untagged
+  m_TagString: TeamA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1695395017
 Transform:
   m_ObjectHideFlags: 0
@@ -4349,6 +4446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!50 &1695395020
 Rigidbody2D:
   serializedVersion: 4
@@ -4360,10 +4460,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4570,7 +4670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1839605034}
   m_Layer: 0
-  m_Name: Team_Red
+  m_Name: TeamA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4751,13 +4851,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1858472630}
   - component: {fileID: 1858472631}
+  - component: {fileID: 1858472632}
+  - component: {fileID: 1858472633}
+  - component: {fileID: 1858472634}
   m_Layer: 0
   m_Name: PBody3
-  m_TagString: Untagged
+  m_TagString: TeamB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1858472630
 Transform:
   m_ObjectHideFlags: 0
@@ -4765,7 +4868,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1858472629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2, y: -1.9849999, z: 0.0625}
+  m_LocalPosition: {x: 4.2, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1301957351}
@@ -4818,6 +4921,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1858472632
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858472629}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.005878091, y: 1.215}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.77, y: 2.43}
+    newSize: {x: 0.77, y: 2.43}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.452574, y: 2.43}
+  m_EdgeRadius: 0
+--- !u!50 &1858472633
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858472629}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &1858472634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858472629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92ed690a3c0f8f478a321c762f0cccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 40
+  teamAJump: 0
+  teamBJump: 0
+  singlePlayerController: {fileID: 371944155}
 --- !u!1 &1873377953
 GameObject:
   m_ObjectHideFlags: 0
