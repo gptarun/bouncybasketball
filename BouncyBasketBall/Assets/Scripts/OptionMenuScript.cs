@@ -20,7 +20,6 @@ public class OptionMenuScript : MonoBehaviour {
     [SerializeField] Toggle switchSide;
     //Make game music ON/OFF
     [SerializeField] Toggle music;
-
     //All static variables
     public static int quaterCounter = 4;
     public static int teamSizeCounter = 3;
@@ -40,9 +39,14 @@ public class OptionMenuScript : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void onToggle()
+    public void onToggleSound()
     {
+        FindObjectOfType<AudioSource>().mute = !sound.isOn;
+    }
 
+    public void OnToggleEffects()
+    {
+        FindObjectOfType<AudioSource>().mute = !music.isOn;
     }
 
     public void ChangeQuaterNumber()

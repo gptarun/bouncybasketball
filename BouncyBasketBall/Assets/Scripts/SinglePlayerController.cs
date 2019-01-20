@@ -9,6 +9,7 @@ using TMPro;
 public class SinglePlayerController : MonoBehaviour {
     [HideInInspector] public string teamAMode;
     [HideInInspector] public string teamBMode;
+    private int teamSize;
     private string teamAFullName;
     private string teamBFullName;
     [SerializeField] Text quater;
@@ -33,6 +34,7 @@ public class SinglePlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         pauseButtonPressed = false;
+        teamSize = OptionMenuScript.teamSizeCounter;
         totalQuaterCounter = OptionMenuScript.quaterCounter;
         quater.text = "Q" + quaterCounter;
         qTimer = OptionMenuScript.quaterDuration;
@@ -78,7 +80,7 @@ public class SinglePlayerController : MonoBehaviour {
     IEnumerator MakeUserReady()
     {
         jumpAnim.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         jumpAnim.SetActive(false);
     }
     
