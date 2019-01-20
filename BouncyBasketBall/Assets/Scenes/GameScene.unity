@@ -440,7 +440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  ball: {fileID: 0}
 --- !u!61 &46773603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -662,12 +661,12 @@ GameObject:
   - component: {fileID: 210798200}
   - component: {fileID: 210798204}
   m_Layer: 0
-  m_Name: chi_p3_body
+  m_Name: PBody3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &210798199
 Transform:
   m_ObjectHideFlags: 0
@@ -675,7 +674,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210798198}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -3.375, y: -2.005, z: 0.0625}
+  m_LocalPosition: {x: -3.89, y: -2.005, z: 0.0625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 46773601}
@@ -1067,6 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371944154}
   - component: {fileID: 371944155}
+  - component: {fileID: 371944156}
   m_Layer: 0
   m_Name: GameSceneObject
   m_TagString: Untagged
@@ -1114,6 +1114,108 @@ MonoBehaviour:
   winnerName: {fileID: 661870404}
   pauseButton: {fileID: 826333479}
   jumpAnim: {fileID: 1924545649}
+  player:
+  - {fileID: 1695395016}
+  - {fileID: 993438779}
+  - {fileID: 687963689}
+  - {fileID: 1465716798}
+  - {fileID: 210798198}
+  - {fileID: 1858472629}
+--- !u!82 &371944156
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371944153}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fee6b1409fc97d44fac931a965a90aa1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &540273419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,12 +1627,12 @@ GameObject:
   - component: {fileID: 687963691}
   - component: {fileID: 687963695}
   m_Layer: 0
-  m_Name: chi_p2_body
+  m_Name: PBody2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &687963690
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,7 +1640,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 687963689}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.37, y: -2, z: 0}
+  m_LocalPosition: {x: -2.885, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1.00491, z: 1}
   m_Children:
   - {fileID: 919854960}
@@ -1786,7 +1888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  ball: {fileID: 0}
 --- !u!61 &715161164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1931,9 +2032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 766937609}
-  basket1: {fileID: 1120056795}
-  ballPos: {x: 0, y: 0, z: 0}
   attached: 0
+  throwBall: 0
   attachName: 
 --- !u!58 &766937608
 CircleCollider2D:
@@ -2346,7 +2446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  ball: {fileID: 0}
 --- !u!61 &919854962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2428,12 +2527,12 @@ GameObject:
   - component: {fileID: 993438780}
   - component: {fileID: 993438781}
   m_Layer: 0
-  m_Name: bro_p1_body
+  m_Name: PBody1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &993438780
 Transform:
   m_ObjectHideFlags: 0
@@ -2441,7 +2540,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 993438779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4700003, y: -1.9749998, z: 0.0625}
+  m_LocalPosition: {x: 1.9, y: -1.9749998, z: 0.0625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1595811587}
@@ -3027,11 +3126,6 @@ Prefab:
 --- !u!4 &1120056794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4484175050671266, guid: 67898889b1c70d64caf1cde79676116f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120056793}
---- !u!1 &1120056795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1358401813796498, guid: 67898889b1c70d64caf1cde79676116f,
     type: 2}
   m_PrefabInternal: {fileID: 1120056793}
 --- !u!1 &1157470258
@@ -3667,12 +3761,12 @@ GameObject:
   - component: {fileID: 1465716799}
   - component: {fileID: 1465716800}
   m_Layer: 0
-  m_Name: bro_p2_body
+  m_Name: PBody2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1465716799
 Transform:
   m_ObjectHideFlags: 0
@@ -3680,7 +3774,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465716798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.29, y: -1.9849999, z: 0.0625}
+  m_LocalPosition: {x: 3.09, y: -1.9849999, z: 0.0625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1157470259}
@@ -4223,12 +4317,12 @@ GameObject:
   - component: {fileID: 1695395018}
   - component: {fileID: 1695395022}
   m_Layer: 0
-  m_Name: chi_p1_body
+  m_Name: PBody1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1695395017
 Transform:
   m_ObjectHideFlags: 0
@@ -4236,7 +4330,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1695395016}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.36, y: -2, z: 0}
+  m_LocalPosition: {x: -1.8750001, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1.0049137, z: 1}
   m_Children:
   - {fileID: 715161162}
@@ -4658,12 +4752,12 @@ GameObject:
   - component: {fileID: 1858472630}
   - component: {fileID: 1858472631}
   m_Layer: 0
-  m_Name: bro_p3_body
+  m_Name: PBody3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1858472630
 Transform:
   m_ObjectHideFlags: 0
@@ -4671,7 +4765,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1858472629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.57, y: -1.9849999, z: 0.0625}
+  m_LocalPosition: {x: 4.2, y: -1.9849999, z: 0.0625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1301957351}
@@ -4987,7 +5081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1924545650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5004,7 +5098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 74}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1954355785

@@ -41,12 +41,7 @@ public class OptionMenuScript : MonoBehaviour {
 	}
     public void onToggleSound()
     {
-        FindObjectOfType<AudioSource>().mute = !sound.isOn;
-    }
-
-    public void OnToggleEffects()
-    {
-        FindObjectOfType<AudioSource>().mute = !music.isOn;
+        FindObjectOfType<AudioSource>().mute = !sound.isOn;        
     }
 
     public void ChangeQuaterNumber()

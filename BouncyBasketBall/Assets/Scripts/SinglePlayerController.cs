@@ -9,7 +9,6 @@ using TMPro;
 public class SinglePlayerController : MonoBehaviour {
     [HideInInspector] public string teamAMode;
     [HideInInspector] public string teamBMode;
-    private int teamSize;
     private string teamAFullName;
     private string teamBFullName;
     [SerializeField] Text quater;
@@ -27,14 +26,13 @@ public class SinglePlayerController : MonoBehaviour {
     [SerializeField] TextMeshProUGUI winnerName;
     [SerializeField] Button pauseButton;
     private static bool pauseButtonPressed = false;
-    bool gameOver = false;
-    bool isQuater = true;
+    bool gameOver = false;  
     public GameObject jumpAnim;
     float delatTime;
+    public GameObject[] player = new GameObject[6];
     // Use this for initialization
-    void Start () {
+    void Start () {        
         pauseButtonPressed = false;
-        teamSize = OptionMenuScript.teamSizeCounter;
         totalQuaterCounter = OptionMenuScript.quaterCounter;
         quater.text = "Q" + quaterCounter;
         qTimer = OptionMenuScript.quaterDuration;
@@ -43,6 +41,11 @@ public class SinglePlayerController : MonoBehaviour {
         scoreB = 8;
         teamAScore.text = scoreA.ToString();
         teamBScore.text = scoreB.ToString();
+        for (int i = 0; i < OptionMenuScript.teamSizeCounter*2; i++)
+        { 
+            player[i].SetActive(true);
+        }
+
         StartCoroutine("LoseTime");
         delatTime = qTimer;
         Time.timeScale = 1;
@@ -102,6 +105,10 @@ public class SinglePlayerController : MonoBehaviour {
         teamBMode = modeB;
         teamAFullName = teamANameSelected;
         teamBFullName = teamBNameSelected;
+        if(GameObject.Find("MenuBg") != null)
+        {
+            Destroy(GameObject.Find("MenuBg"));
+        }
     }
    
     public void LoadMenu()
