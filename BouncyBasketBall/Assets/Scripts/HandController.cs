@@ -8,22 +8,25 @@ public class HandController : MonoBehaviour
     private bool antiRotate = false;
     public float speed = 4f;
     private float angle;
-    public GameObject ball;
+    private GameObject ballGameObject;
     private BallMovementMouse ballScript;
+    private Transform handPivot;
+    private int buttonCount=0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        ball = GetComponent<GameObject>();
-        ballScript = GameObject.Find("basketball").GetComponent<BallMovementMouse>();
+        initializeObjects();
+        handPivot = transform.Find("handPivot");
     }
 
     void Update()
     {
+        initializeObjects();
         if (Input.GetButtonDown("Fire1"))
         {
             rotate = true;
         }
+
         if (rotate)
         {
             angle = angle - 180 * Time.deltaTime * speed;
@@ -36,17 +39,23 @@ public class HandController : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
+            buttonCount++;
+            if (buttonCount % 2==0)
+            {
+                ballScript.throwBall = true;
+            }
             antiRotate = true;
             rotate = false;
         }
+
         if (antiRotate)
         {
             angle = angle + 180 * Time.deltaTime * speed;
             transform.Rotate(0, 0, 180 * Time.deltaTime * speed);
 
-            if (ballScript.attached == true && transform.name == ballScript.attachName && ball != null)
+            if (ballScript.attached && transform.name == ballScript.attachName && ballGameObject != null)
             {
-                ball.transform.position = transform.Find("handPivot").position + new Vector3(0, -0.24f, 0);
+                ballGameObject.transform.position = handPivot.position + new Vector3(0, -0.24f, 0);
             }
 
             if (angle >= 0)
@@ -54,6 +63,11 @@ public class HandController : MonoBehaviour
                 antiRotate = false;
             }
         }
+    }
+    void initializeObjects()
+    {
+        ballGameObject = GameObject.Find("basketball");
+        ballScript = ballGameObject.GetComponent<BallMovementMouse>();
     }
 }
 

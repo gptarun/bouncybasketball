@@ -7,7 +7,8 @@ public class PlayerJump : MonoBehaviour
     public float jumpHeight = 40f;
     private bool isJumping = false; 
     private Rigidbody2D rigidBody2D;
-    private GameObject ball;
+    private GameObject ballGameObject;
+    private BallMovementMouse ballScript;
     private Vector3 jumpCoordinates;
     private float jumpDistance;
     private HingeJoint2D hingeJoint;
@@ -15,46 +16,46 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
-        ball = GameObject.Find("basketball") ;
-    }   
+        initializeObjects();
+    }
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !isJumping) 
+        initializeObjects();
+        if (Input.GetButtonDown("Fire1") && !isJumping ) 
         {
-            Destroy(hingeJoint);
-            jumpCoordinates = ball.transform.position - transform.position ;
-            //jumpDistance = Vector3.Distance(ball.transform.position, transform.position);
-            //jumpCoordinates.x = jumpDistance;
+            jumpCoordinates = ballGameObject.transform.position - transform.position ;
             jumpCoordinates.y = 5;
             rigidBody2D.AddForce(jumpCoordinates * jumpHeight);
             isJumping = true;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (col.gameObject.tag == "Ground") 
+        if (collision.gameObject.tag == "Ground") 
         {
-            //transform.rotation();
-
-            transform.gameObject.AddComponent<HingeJoint2D>();
-            hingeJoint = transform.gameObject.GetComponent<HingeJoint2D>();
-            //hingeJoint.autoConfigureConnectedAnchor = false;
-            //hingeJoint.connectedBody = transform.gameObject.GetComponent<Rigidbody2D>();
-            //hingeJoint.connectedAnchor = new Vector3(0, 0, 0);
+            //transform.gameObject.AddComponent<HingeJoint2D>();
+            //hingeJoint = transform.gameObject.GetComponent<HingeJoint2D>();
+            //Debug.Log("added");
+            //hingeJoint.autoConfigureConnectedAnchor = true;
+            ////hingeJoint.connectedBody = transform.gameObject.GetComponent<Rigidbody2D>();
+            ////hingeJoint.connectedAnchor = new Vector3(0, 0, 0);
             //hingeJoint.useMotor = true;
-            //JointMotor2D jointMotor = new JointMotor2D() ;
+            //JointMotor2D jointMotor = new JointMotor2D();
             //jointMotor.motorSpeed = 5f;
             //jointMotor.maxMotorTorque = 5f;
             //hingeJoint.motor = jointMotor;
             //hingeJoint.useLimits = true;
             //JointAngleLimits2D angleLimit = new JointAngleLimits2D();
-            //angleLimit.min = 0;
-            //angleLimit.max = 90;
+            //angleLimit.min = -90f;
+            //angleLimit.max = -160f;
             //hingeJoint.limits = angleLimit;
             isJumping = false;
-
-
         }
+    }
+    void initializeObjects()
+    {
+        ballGameObject = GameObject.Find("basketball");
+        ballScript = ballGameObject.GetComponent<BallMovementMouse>();
     }
 }
