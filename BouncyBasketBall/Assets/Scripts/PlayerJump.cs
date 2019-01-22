@@ -11,11 +11,11 @@ public class PlayerJump : MonoBehaviour
     private BallMovementMouse ballScript;
     private Vector3 jumpCoordinates;
     private float jumpDistance;
-    public bool teamAJump = false;
-    public bool teamBJump = false;
+    [HideInInspector] public bool teamAJump = false;
+    [HideInInspector] public bool teamBJump = false;
     private float screenWidth;
     public SinglePlayerController singlePlayerController;
-    public Vector3 jump;
+    [HideInInspector] public Vector3 jump;
     private bool isGrounded;
     private readonly float jumpConstant = 5f;
     [HideInInspector] public bool rotateHand;
