@@ -1463,7 +1463,9 @@ MonoBehaviour:
   quater: {fileID: 1611403389}
   quaterTimer: {fileID: 1018912835}
   teamAScore: {fileID: 1998427471}
+  scoreA: 0
   teamBScore: {fileID: 219805328}
+  scoreB: 0
   teamAName: {fileID: 1837382936}
   teamBName: {fileID: 1598599633}
   canvasObject: {fileID: 694144510}
@@ -2382,6 +2384,8 @@ MonoBehaviour:
   attached: 0
   throwBall: 0
   attachName: 
+  scoreTeamA: 0
+  scoreTeamB: 0
 --- !u!58 &766937608
 CircleCollider2D:
   m_ObjectHideFlags: 0

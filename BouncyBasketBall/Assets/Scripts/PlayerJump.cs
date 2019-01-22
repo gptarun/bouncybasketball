@@ -9,15 +9,14 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private GameObject ballGameObject;
     private BallMovementMouse ballScript;
-    private Vector3 jumpCoordinates;
-    private float jumpDistance;
+    private Vector3 jumpCoordinates;    
     [HideInInspector] public bool teamAJump = false;
     [HideInInspector] public bool teamBJump = false;
     private float screenWidth;
     public SinglePlayerController singlePlayerController;
     [HideInInspector] public Vector3 jump;
     private bool isGrounded;
-    private readonly float jumpConstant = 5f;
+    private readonly float jumpConstant = 2f;
     [HideInInspector] public bool rotateHand;
     private float speed = 4f;
     private float z;
@@ -105,9 +104,10 @@ public class PlayerJump : MonoBehaviour
                 z += Time.deltaTime * rotationSpeed;
             }
             this.gameObject.transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, z);
-            if (z >= 0)
+            if (z >= 5)
             {
                 rotateA = false;
+                antiRotate = false;
                 z = 0;
             }
         }
@@ -133,6 +133,7 @@ public class PlayerJump : MonoBehaviour
             if (z >= 5)
             {
                 rotateB = false;
+                antiRotate = false;
                 z = 0;
             }
         }
@@ -142,8 +143,9 @@ public class PlayerJump : MonoBehaviour
     {
         if (this.gameObject.tag.Equals("TeamA"))
         {
-            jumpCoordinates = ballGameObject.transform.position - transform.position;
+            jumpCoordinates = ballGameObject.transform.position - transform.position;           
             jumpCoordinates.y = jumpConstant;
+            Debug.Log(jumpCoordinates);
             rigidBody2D.AddForce(jumpCoordinates * jumpPower);
             
         }
@@ -153,6 +155,7 @@ public class PlayerJump : MonoBehaviour
         if (this.gameObject.tag.Equals("TeamB"))
         {
             jumpCoordinates = ballGameObject.transform.position - transform.position;
+            jumpCoordinates.x = jumpCoordinates.x / 2;
             jumpCoordinates.y = jumpConstant;
             rigidBody2D.AddForce(jumpCoordinates * jumpPower);
 
@@ -166,19 +169,11 @@ public class PlayerJump : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
-        if (Other.collider.gameObject.tag == "ground")
-        {
-            isGrounded = true;
-
-        }
+        isGrounded = true;
     }
 
     void OnCollisionExit2D(Collision2D Other)
     {
-        if (Other.collider.gameObject.tag == "ground")
-        {
-            isGrounded = false;
-
-        }
+        isGrounded = false;        
     }
 }
