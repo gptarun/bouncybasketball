@@ -12,27 +12,24 @@ public class BallMovementMouse : MonoBehaviour
     public Transform ball;
     private GameObject ballGameObject;
     private CircleCollider2D circleCol;
-    [HideInInspector] public bool attached =false;
-    [HideInInspector] public bool throwBall = false;
+    [HideInInspector] public bool attached = false;
     private bool thrown = false;
     private PlayerJump playerScript;
     private HandController handScript;
     private bool colBodyExit = false;
     private bool colHandExit = false;
     [HideInInspector] public string attachName;
-    [HideInInspector] public int scoreTeamA = 0;
-    [HideInInspector] public int scoreTeamB = 0;
     private SinglePlayerController singlePlayerController;
     private bool colHalfExit = false;
     private bool colOutOfBoundExit = false;
 
     void Start()
     {
-        basketA = GameObject.Find("HoopA");
-        basketB = GameObject.Find("HoopB");
         ballGameObject = GameObject.Find("basketball");
         circleCol = ballGameObject.GetComponent<CircleCollider2D>();
         ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();
+        basketA = GameObject.Find("Basket_Team2");
+        basketB = GameObject.Find("Basket_Team2");
         ballPos = ball.position;
         singlePlayerController = GameObject.Find("GameSceneObject").GetComponent<SinglePlayerController>();
     }
@@ -41,10 +38,11 @@ public class BallMovementMouse : MonoBehaviour
     {
         if (Input.GetButtonUp("Fire1") && ballGameObject != null)
         {
-            if(attached && !thrown){
+            if (attached && !thrown)
+            {
                 thrown = true;
             }
-            else if(attached && thrown)
+            else if (attached && thrown)
             {
                 ballGameObject.AddComponent<Rigidbody2D>();
                 ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();

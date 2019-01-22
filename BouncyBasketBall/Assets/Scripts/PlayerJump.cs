@@ -10,14 +10,13 @@ public class PlayerJump : MonoBehaviour
     private GameObject ballGameObject;
     private BallMovementMouse ballScript;
     private Vector3 jumpCoordinates;
-    private float jumpDistance;
     [HideInInspector] public bool teamAJump = false;
     [HideInInspector] public bool teamBJump = false;
     private float screenWidth;
     public SinglePlayerController singlePlayerController;
     [HideInInspector] public Vector3 jump;
     private bool isGrounded;
-    private readonly float jumpConstant = 5f;
+    private readonly float jumpConstant = 2f;
     [HideInInspector] public bool rotateHand;
     private float speed = 4f;
     private float z;
@@ -144,6 +143,7 @@ public class PlayerJump : MonoBehaviour
         {
             jumpCoordinates = ballGameObject.transform.position - transform.position;
             jumpCoordinates.y = jumpConstant;
+            jumpCoordinates.x = jumpCoordinates.x / 2;
             rigidBody2D.AddForce(jumpCoordinates * jumpPower);
             
         }
@@ -154,6 +154,7 @@ public class PlayerJump : MonoBehaviour
         {
             jumpCoordinates = ballGameObject.transform.position - transform.position;
             jumpCoordinates.y = jumpConstant;
+            jumpCoordinates.x = jumpCoordinates.x / 2;
             rigidBody2D.AddForce(jumpCoordinates * jumpPower);
 
         }
@@ -166,19 +167,11 @@ public class PlayerJump : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
-        if (Other.collider.gameObject.tag == "ground")
-        {
-            isGrounded = true;
-
-        }
+        isGrounded = true;
     }
 
     void OnCollisionExit2D(Collision2D Other)
     {
-        if (Other.collider.gameObject.tag == "ground")
-        {
-            isGrounded = false;
-
-        }
+        isGrounded = false;
     }
 }
