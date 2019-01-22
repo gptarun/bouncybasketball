@@ -19,8 +19,7 @@ public class BallMovementMouse : MonoBehaviour
     private bool colBodyExit = false;
     private bool colHandExit = false;
     [HideInInspector] public string attachName;
-    [HideInInspector] public int scoreTeamA = 0;
-    [HideInInspector] public int scoreTeamB = 0;
+    private SinglePlayerController singlePlayerController;
     private bool colHalfExit = false;
     private bool colOutOfBoundExit = false;
 
@@ -32,6 +31,7 @@ public class BallMovementMouse : MonoBehaviour
         basketA = GameObject.Find("Basket_Team2");
         basketB = GameObject.Find("Basket_Team2");
         ballPos = ball.position;
+        singlePlayerController = GameObject.Find("GameSceneObject").GetComponent<SinglePlayerController>();
     }
 
     void Update()
@@ -100,22 +100,22 @@ public class BallMovementMouse : MonoBehaviour
         {
             if (colHalfExit)
             {
-                scoreTeamB = scoreTeamB + 3;
+                singlePlayerController.scoreB = singlePlayerController.scoreB + 3;
             }
             else
             {
-                scoreTeamB = scoreTeamB + 2;
+                singlePlayerController.scoreB = singlePlayerController.scoreB + 2;
             }
         }
         if (col.tag == "BasketB")
         {
             if (colHalfExit)
             {
-                scoreTeamA = scoreTeamA + 3;
+                singlePlayerController.scoreA = singlePlayerController.scoreA + 3;
             }
             else
             {
-                scoreTeamA = scoreTeamA + 2;
+                singlePlayerController.scoreA = singlePlayerController.scoreA + 2;
             }
         }
         if (col.tag == "OutOfBound")
