@@ -12,19 +12,19 @@ public class BallMovementMouse : MonoBehaviour
     public Transform ball;
     private GameObject ballGameObject;
     private CircleCollider2D circleCol;
-    public bool attached =false;
-    public bool throwBall = false;
+    [HideInInspector] public bool attached =false;
+    [HideInInspector] public bool throwBall = false;
     private PlayerJump playerScript;
     private HandController handScript;
     private bool colBodyExit = false;
     private bool colHandExit = false;
-    public string attachName;
+    [HideInInspector] public string attachName;
 
     void Start()
     {
         initializeObjects();
-        basket1 = GameObject.Find("Basket_Team2");
-        basket2 = GameObject.Find("Basket_Team2");
+        basket1 = GameObject.Find("HoopA");
+        basket2 = GameObject.Find("HoopB");
         ballPos = ball.position;
     }
 

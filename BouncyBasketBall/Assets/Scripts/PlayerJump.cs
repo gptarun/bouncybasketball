@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    public float jumpHeight = 2.0f;    
+    private float jumpPower = 30f;
     private Rigidbody2D rigidBody2D;
     private GameObject ballGameObject;
     private BallMovementMouse ballScript;
@@ -16,55 +17,124 @@ public class PlayerJump : MonoBehaviour
     public SinglePlayerController singlePlayerController;
     public Vector3 jump;
     private bool isGrounded;
+    private readonly float jumpConstant = 5f;
+    [HideInInspector] public bool rotateHand;
+    private float speed = 4f;
+    private float z;
+    private float rotationSpeed;
+    private bool rotateA;
+    private bool rotateB;
+    private bool antiRotate;
 
     //private HingeJoint2D hingeJoint;
 
     private void Start()
     {
         screenWidth = Screen.width;
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
-        rigidBody2D = GetComponent<Rigidbody2D>();        
+        jump = new Vector3(0.0f, 0.5f, 0.0f);
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        z = 0.0f;
+        rotationSpeed = 400.0f;
+        antiRotate = false;
         initializeObjects();
     }
     private void Update()
     {
         for (int i = 0; i < Input.touchCount; i++)
-        {            
-            if (Input.touches[i].position.x < screenWidth / 2)
-            {                
+        {
+            if (Input.touches[i].position.x < screenWidth / 2 && isGrounded)
+            {
                 if (singlePlayerController.teamAMode.Equals("human"))
                 {
                     teamAJump = true;
                     GetJumpA();
-                    Debug.Log("A jump by Human");
+                    rotateA = true;
                 }
-                else if(singlePlayerController.teamBMode.Equals("human"))
+                else if (singlePlayerController.teamBMode.Equals("human"))
                 {
                     teamBJump = true;
                     GetJumpB();
-                    Debug.Log("B jump by human");
+                    rotateB = true;
                 }
 
             }
-            else
+            else if (Input.touches[i].position.x > screenWidth / 2 && isGrounded)
             {
                 if (singlePlayerController.teamBMode.Equals("human"))
                 {
                     teamBJump = true;
                     GetJumpB();
-                    Debug.Log("B jump by Human");
+                    rotateB = true;
                 }
-                else if(singlePlayerController.teamAMode.Equals("human"))
+                else if (singlePlayerController.teamAMode.Equals("human"))
                 {
                     GetJumpA();
+                    rotateA = true;
                     teamAJump = true;
-                    Debug.Log("A jump by human");
                 }
-            }
-        }              
-        if (ballGameObject == null) 
+            }           
+        }
+        if (rotateA)
+        {
+            RotateHandA();
+        }
+        if (rotateB)
+        {
+            RotateHandB();
+        }
+        if (ballGameObject == null)
         {
             initializeObjects();
+        }
+    }
+
+    private void RotateHandA()
+    {
+        if (this.gameObject.tag.Equals("TeamA"))
+        {
+            if (!antiRotate)
+            {
+                z -= Time.deltaTime * rotationSpeed;
+            }
+            if (z < -180.0f)
+            {
+                antiRotate = true;
+            }
+            if (antiRotate)
+            {
+                z += Time.deltaTime * rotationSpeed;
+            }
+            this.gameObject.transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, z);
+            if (z >= 0)
+            {
+                rotateA = false;
+                z = 0;
+            }
+        }
+    }
+
+    private void RotateHandB()
+    {
+        if (this.gameObject.tag.Equals("TeamB"))
+        {
+            if (!antiRotate)
+            {
+                z -= Time.deltaTime * rotationSpeed;
+            }
+            if (z < -180.0f)
+            {
+                antiRotate = true;
+            }
+            if (antiRotate)
+            {
+                z += Time.deltaTime * rotationSpeed;
+            }
+            this.gameObject.transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, z);
+            if (z >= 5)
+            {
+                rotateB = false;
+                z = 0;
+            }
         }
     }
 
@@ -73,9 +143,9 @@ public class PlayerJump : MonoBehaviour
         if (this.gameObject.tag.Equals("TeamA"))
         {
             jumpCoordinates = ballGameObject.transform.position - transform.position;
-            jumpCoordinates.y = 0.5f;          
-            rigidBody2D.AddForce(jump * jumpHeight, ForceMode2D.Impulse);            
-            isGrounded = false;
+            jumpCoordinates.y = jumpConstant;
+            rigidBody2D.AddForce(jumpCoordinates * jumpPower);
+            
         }
     }
     public void GetJumpB()
@@ -83,32 +153,9 @@ public class PlayerJump : MonoBehaviour
         if (this.gameObject.tag.Equals("TeamB"))
         {
             jumpCoordinates = ballGameObject.transform.position - transform.position;
-            jumpCoordinates.y = 0.5f;
-            rigidBody2D.AddForce(jump * jumpHeight,ForceMode2D.Impulse);
-            isGrounded = false;
-        }
-    }
+            jumpCoordinates.y = jumpConstant;
+            rigidBody2D.AddForce(jumpCoordinates * jumpPower);
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground") 
-        {
-            //transform.gameObject.AddComponent<HingeJoint2D>();
-            //hingeJoint = transform.gameObject.GetComponent<HingeJoint2D>();
-            //Debug.Log("added");
-            //hingeJoint.autoConfigureConnectedAnchor = true;
-            ////hingeJoint.connectedBody = transform.gameObject.GetComponent<Rigidbody2D>();
-            ////hingeJoint.connectedAnchor = new Vector3(0, 0, 0);
-            //hingeJoint.useMotor = true;
-            //JointMotor2D jointMotor = new JointMotor2D();
-            //jointMotor.motorSpeed = 5f;
-            //jointMotor.maxMotorTorque = 5f;
-            //hingeJoint.motor = jointMotor;
-            //hingeJoint.useLimits = true;
-            //JointAngleLimits2D angleLimit = new JointAngleLimits2D();
-            //angleLimit.min = -90f;
-            //angleLimit.max = -160f;
-            //hingeJoint.limits = angleLimit;
         }
     }
     void initializeObjects()
@@ -117,8 +164,21 @@ public class PlayerJump : MonoBehaviour
         ballScript = ballGameObject.GetComponent<BallMovementMouse>();
     }
 
-    void OnCollisionStay()
+    void OnCollisionEnter2D(Collision2D Other)
     {
-        isGrounded = true;
+        if (Other.collider.gameObject.tag == "ground")
+        {
+            isGrounded = true;
+
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D Other)
+    {
+        if (Other.collider.gameObject.tag == "ground")
+        {
+            isGrounded = false;
+
+        }
     }
 }

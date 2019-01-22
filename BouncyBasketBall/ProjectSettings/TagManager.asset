@@ -8,6 +8,7 @@ TagManager:
   - Ball
   - TeamA
   - TeamB
+  - ground
   layers:
   - Default
   - TransparentFX
