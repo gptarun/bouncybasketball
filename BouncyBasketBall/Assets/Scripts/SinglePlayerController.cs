@@ -17,9 +17,9 @@ public class SinglePlayerController : MonoBehaviour {
     [SerializeField] Text quaterTimer;
     private int qTimer;
     [SerializeField] Text teamAScore;
-    [HideInInspector] public int scoreA = 0;
+    [HideInInspector] public int scoreA;
     [SerializeField] Text teamBScore;
-    [HideInInspector] public int scoreB = 0;
+    [HideInInspector] public int scoreB;
     [SerializeField] Text teamAName;
     [SerializeField] Text teamBName;
     [SerializeField] GameObject canvasObject;
