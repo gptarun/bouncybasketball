@@ -5,57 +5,65 @@ using UnityEngine;
 public class BallMovementMouse : MonoBehaviour
 {
     private Rigidbody2D ballRigidbody;
-    private GameObject basket1;
-    private GameObject basket2;
+    private GameObject basketA;
+    private GameObject basketB;
     private Vector3 throwSpeed = new Vector3(-10, 10, 0);
     private Vector3 ballPos;
     public Transform ball;
     private GameObject ballGameObject;
     private CircleCollider2D circleCol;
-    [HideInInspector] public bool attached =false;
-    [HideInInspector] public bool throwBall = false;
+    [HideInInspector] public bool attached = false;
+    private bool thrown = false;
     private PlayerJump playerScript;
     private HandController handScript;
     private bool colBodyExit = false;
     private bool colHandExit = false;
     [HideInInspector] public string attachName;
+    private SinglePlayerController singlePlayerController;
+    private bool colHalfExit = false;
+    private bool colOutOfBoundExit = false;
 
     void Start()
     {
-        initializeObjects();
-        basket1 = GameObject.Find("HoopA");
-        basket2 = GameObject.Find("HoopB");
+        ballGameObject = GameObject.Find("basketball");
+        circleCol = ballGameObject.GetComponent<CircleCollider2D>();
+        ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();
+        basketA = GameObject.Find("Basket_Team2");
+        basketB = GameObject.Find("Basket_Team2");
         ballPos = ball.position;
+        singlePlayerController = GameObject.Find("GameSceneObject").GetComponent<SinglePlayerController>();
     }
 
     void Update()
     {
-        initializeObjects();
-        if (Input.GetButtonUp("Fire1") && ballGameObject != null && throwBall && attached)
+        if (Input.GetButtonUp("Fire1") && ballGameObject != null)
         {
-            ballGameObject.AddComponent<Rigidbody2D>();
-            ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();
-            ballRigidbody.collisionDetectionMode = (CollisionDetectionMode2D)1;
-            throwSpeed.x = (basket1.transform.position.x - ballGameObject.transform.position.x)/2;
-            throwSpeed.y = basket1.transform.position.y + 8f;
-            throwSpeed.z = 0;
-            ballRigidbody.AddForce(throwSpeed, ForceMode2D.Impulse);
-            throwBall = false;
+            if (attached && !thrown)
+            {
+                thrown = true;
+            }
+            else if (attached && thrown)
+            {
+                ballGameObject.AddComponent<Rigidbody2D>();
+                ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();
+                ballRigidbody.collisionDetectionMode = (CollisionDetectionMode2D)1;
+                throwSpeed.x = (basketA.transform.position.x - ballGameObject.transform.position.x) / 2;
+                throwSpeed.y = basketA.transform.position.y + 8f;
+                throwSpeed.z = 0;
+                ballRigidbody.AddForce(throwSpeed, ForceMode2D.Impulse);
+                thrown = true;
+            }
         }
 
-        if (ballGameObject != null && ballGameObject.transform.position.y < -6 )
+        if (ballGameObject != null && colOutOfBoundExit)
         {
-            Destroy(ballGameObject);
-            ballGameObject = createBall(ballGameObject);
+            ballGameObject.transform.position = ballPos;
+            colOutOfBoundExit = false;
         }
-        if (ballGameObject != null && Input.GetButton("Fire2") && ballGameObject.transform.position.y < -1.6)
-        {
-            Destroy(ballGameObject);
-            ballGameObject = createBall(ballGameObject);
-        }
-        if (colBodyExit && colHandExit)
+        if (colBodyExit && thrown)
         {
             attached = false;
+            attachName = "";
             circleCol.isTrigger = false;
         }
     }
@@ -69,38 +77,51 @@ public class BallMovementMouse : MonoBehaviour
             Destroy(ballRigidbody);
             attached = true;
             attachName = col.name;
-            colHandExit = false;
+            colBodyExit = false;
+            colHalfExit = false;
+        }
+        if (col.tag == "Body")
+        {
             colBodyExit = false;
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Hand")
-        {
-            Debug.Log("collision Hand exit");
-            colHandExit = true;
-        }
         if (col.tag == "Body")
         {
             Debug.Log("collision Body exit");
             colBodyExit = true;
         }
-    }
-
-    GameObject createBall(GameObject ball)
-    {
-        ball=Instantiate(ball, ballPos, transform.rotation);
-        ball.GetComponent<CircleCollider2D>().enabled = true;
-        ball.GetComponent<BallMovementMouse>().enabled = true;
-        ball.name = "basketball";
-        return ball;
-    }
-
-    void initializeObjects()
-    {
-        ballGameObject = GameObject.Find("basketball");
-        ballRigidbody = ballGameObject.GetComponent<Rigidbody2D>();
-        circleCol = ballGameObject.GetComponent<CircleCollider2D>();
+        if (col.tag == "Half")
+        {
+            colHalfExit = true;
+        }
+        if (col.tag == "BasketA")
+        {
+            if (colHalfExit)
+            {
+                singlePlayerController.scoreB = singlePlayerController.scoreB + 3;
+            }
+            else
+            {
+                singlePlayerController.scoreB = singlePlayerController.scoreB + 2;
+            }
+        }
+        if (col.tag == "BasketB")
+        {
+            if (colHalfExit)
+            {
+                singlePlayerController.scoreA = singlePlayerController.scoreA + 3;
+            }
+            else
+            {
+                singlePlayerController.scoreA = singlePlayerController.scoreA + 2;
+            }
+        }
+        if (col.tag == "OutOfBound")
+        {
+            colOutOfBoundExit = true;
+        }
     }
 }
